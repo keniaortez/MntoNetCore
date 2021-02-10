@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ClientesNetCore.Models.Cliente>
+
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<h2>Lista de Clientes</h2>
+
+<p>
+    <br />
+    @Html.ActionLink("Crear Cliente", "CrearCliente")
+</p>
+
+<table class="table">
+    <tr>
+        <th>ID Cliente</th>
+        <th>Identificación</th>
+        <th>Primer Nombre</th>        
+        <th>Primer Apellido</th>
+        <th>Edad</th>
+        <th>Fecha de creación</th>
+        <th>Fecha de modificación</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.IdCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.PrimerNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.PrimerApellido)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Edad)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.FechaModificacion )
+            </td>
+
+            <td>
+                @*"Controlador"*@
+                @Html.ActionLink("Seleccionar", "DetalleCliente", new { idCliente = item.IdCliente })
+                @*
+                    @Html.ActionLink("Edit", "Edit", new {/*id=item._idEmpleado */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>
