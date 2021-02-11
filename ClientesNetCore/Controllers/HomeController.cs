@@ -23,25 +23,22 @@ namespace ClientesNetCore.Controllers
             var data = db.Clientes;
             return View(data);
         }
-        //private readonly MantenimientoContext _Cnn;
-        //public HomeController(MantenimientoContext Cnstr)
-        //{
-        //    _Cnn = Cnstr;
-        //}
         
         [HttpGet]
         public IActionResult CrearCliente() 
         {
             return View();
         }
-
+        readonly MantenimientoContext _Cnn = new MantenimientoContext();
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CrearCliente(Cliente clie) 
         {
-           
-            db.Add(clie);
-            db.SaveChanges();
+
+            //db.Add(clie);
+            //db.SaveChanges();
+            _Cnn.Add(clie);
+            _Cnn.SaveChanges();
             ViewBag.message = "Cliente " + clie.PrimerNombre + " " + clie.PrimerApellido + " creado";
             //return View();
             return RedirectToAction("Index");
@@ -56,9 +53,12 @@ namespace ClientesNetCore.Controllers
         }
 
         [HttpGet]
-        public IActionResult ModificarCliente()
+        public IActionResult ModificarCliente(int IdClie)
         {
-            return View();
+            //return View();
+            Cliente clien = new Cliente();
+            clien.IdCliente = IdClie;
+            return View(clien);
         }
 
         [HttpPost]
