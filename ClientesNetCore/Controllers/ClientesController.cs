@@ -5,19 +5,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ClientesNetCore.Models;
+using Microsoft.EntityFrameworkCore.Storage;
+
 
 namespace ClientesNetCore.Controllers
 {
     public class ClientesController : Controller
     {
-        private readonly MantenimientoContext _Cnn;
-        public ClientesController(MantenimientoContext Cnstr) 
-        {
-            _Cnn = Cnstr;
-        }
+        ////private readonly MantenimientoContext _Cnn;
+        ////public ClientesController(MantenimientoContext Cnstr) 
+        ////{
+        ////    _Cnn = Cnstr;
+        ////}
+        MantenimientoContext db = new MantenimientoContext();
         public IActionResult Index()
         {
-            return View();
+            var data = db.Clientes;
+            return View(data);
+            
         }
 
         //////Detalle cliente sin datos
@@ -50,25 +55,25 @@ namespace ClientesNetCore.Controllers
         }
 
 
-        //Con los datos
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CrearCliente(Cliente modelo)
-        {
-            //Boolean insert = modelo.InsertClientes();
-            //if (insert)
-            //{
-            //    return RedirectToAction("Index");
-            //}
-            //else
-            //{
-            //    return View(modelo);
-            //}
-            _Cnn.Add(modelo);
-            _Cnn.SaveChanges();
-            ViewBag.message = "Cliente " +modelo.PrimerNombre +" " + modelo.PrimerApellido + " creado";
-            return View();
-        }
+        //////Con los datos
+        ////[HttpPost]
+        //////[ValidateAntiForgeryToken]
+        ////public ActionResult CrearCliente(Cliente modelo)
+        ////{
+        ////    //Boolean insert = modelo.InsertClientes();
+        ////    //if (insert)
+        ////    //{
+        ////    //    return RedirectToAction("Index");
+        ////    //}
+        ////    //else
+        ////    //{
+        ////    //    return View(modelo);
+        ////    //}
+        ////    _Cnn.Add(modelo);
+        ////    _Cnn.SaveChanges();
+        ////    ViewBag.message = "Cliente " +modelo.PrimerNombre +" " + modelo.PrimerApellido + " creado";
+        ////    return View();
+        ////}
 
 
         ////////////Modificar cliente - mostrar los datos

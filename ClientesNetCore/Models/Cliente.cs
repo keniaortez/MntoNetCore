@@ -22,3 +22,4 @@ namespace ClientesNetCore.Models
         public DateTime? FechaModificacion { get; set; }
     }
 }
+
