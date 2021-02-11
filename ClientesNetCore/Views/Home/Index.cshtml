@@ -3,23 +3,27 @@
 @{
     ViewBag.Title = "Clientes";
 }
-
-<h2>Lista de Clientes</h2>
-
+  ViewBag.Title = "Clientes";
+}
+<center>
+    <h2>Lista Clientes</h2>
+</center>
 <p>
     <br />
-    @Html.ActionLink("Crear Cliente", "CrearCliente")
+    <b>
+        @Html.ActionLink("Crear cliente", "CrearCliente")
+    </b>
 </p>
 
 <table class="table">
     <tr>
         <th>ID Cliente</th>
         <th>Identificación</th>
-        <th>Primer Nombre</th>        
+        <th>Primer Nombre</th>
         <th>Primer Apellido</th>
         <th>Edad</th>
         <th>Fecha de creación</th>
-        <th>Fecha de modificación</th>
+        <th>Fecha modificación</th>
 
     </tr>
 
@@ -45,17 +49,33 @@
                 @Html.DisplayFor(m => item.FechaCreacion)
             </td>
             <td>
-                @Html.DisplayFor(m => item.FechaModificacion )
+                @Html.DisplayFor(m => item.FechaModificacion)
             </td>
-
             <td>
                 @*"Controlador"*@
-                @Html.ActionLink("Seleccionar", "DetalleCliente", new { idCliente = item.IdCliente })
-                @*
-                    @Html.ActionLink("Edit", "Edit", new {/*id=item._idEmpleado */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                <b>
+                    @Html.ActionLink("Seleccionar", "DetalleCliente", new { IdCliente = item.IdCliente })
+                </b>
+            </td>
+            <td>
+                <b>
+                    @Html.ActionLink("Modificar", "ModificarClientes", new { IdCliente = item.IdCliente })
+                </b>
+            </td>
+            <td>
+                <b>
+                    @Html.ActionLink("Eliminar", "EliminarCliente", new { IdCliente = item.IdCliente })
+                </b>
             </td>
         </tr>
+
+
+
+
+
+
+
     }
 
 </table>
+

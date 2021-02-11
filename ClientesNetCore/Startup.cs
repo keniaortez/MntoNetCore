@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClientesNetCore.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClientesNetCore
 {
@@ -23,6 +25,7 @@ namespace ClientesNetCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MantenimientoContext>(option => option.UseSqlServer(Configuration.GetConnectionString("CnnStr")));
             services.AddControllersWithViews();
         }
 
